@@ -63,20 +63,29 @@ def getWord(wordList):
     worldSelect = random.randint(0,len(wordList))
     return wordList[worldSelect]
 
-
-
-print(getWord(words))
+def printHangman(wrongGuesses):
+    print(hangmanStages[wrongGuesses])
 
 play = True
+win = False
 
 while play:
     
+    gameWord = getWord(words)
     
+    wrongGuesses = 0
     
+    while wrongGuesses < 6 and not win:
+        print()
+        printHangman(wrongGuesses)
+        
+        
+        wrongGuesses+=1
+        
     print("Enter yes to play again.")
     ans = input()
     if ans == "yes":
-        pass
+        wrongGuesses=0
     else:
         play = False
 
