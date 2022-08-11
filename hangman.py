@@ -1,5 +1,8 @@
 import random
 
+random.seed(a=None, version=2)
+
+
 hangmanStages = [
     
     '''            |=======|
@@ -51,21 +54,30 @@ hangmanStages = [
             /\      |
               ______|______
     '''
-            
-        
-    
 ]
 
+words = 'ant baboon badger bat bear beaver camel cat clam cobra cougar coyote crow deer dog donkey duck eagle ferret fox frog goat goose hawk lion lizard llama mole monkey moose mouse mule newt otter owl panda parrot pigeon python rabbit ram rat raven rhino salmon seal shark sheep skunk sloth snake spider stork swan tiger toad trout turkey turtle weasel whale wolf wombat zebra kush ayush rupesh jaivish shivom adi heeya deeya mahitha rhea prachi vrunda krishna'.split()
+
+#selects word write for hangman
+def getWord(wordList):
+    worldSelect = random.randint(0,len(wordList))
+    return wordList[worldSelect]
 
 
-words = {"space", "gray", "mac", "pro"}
 
+print(getWord(words))
 
-for stage in hangmanStages:
-    print(stage)
+play = True
+
+while play:
     
-    print("hi")
     
-    print("sending from main")
     
-    #testing agian
+    print("Enter yes to play again.")
+    ans = input()
+    if ans == "yes":
+        pass
+    else:
+        play = False
+
+
