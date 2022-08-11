@@ -65,3 +65,5 @@ for stage in hangmanStages:
     print(stage)
     
     print("hi")
+    
+    print("sending from main")
