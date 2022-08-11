@@ -1,6 +1,6 @@
-from distutils.command.sdist import sdist
 import random
 
-def wordSelector(string ar):
-    randLet = rand()
-    
+words = {"space", "gray", "mac", "pro"}
+for word in words:
+    print(word)
+print(len(words))
