@@ -63,3 +63,5 @@ words = {"space", "gray", "mac", "pro"}
 
 for stage in hangmanStages:
     print(stage)
+    
+    print("hi")
