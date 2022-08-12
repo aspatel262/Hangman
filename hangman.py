@@ -277,8 +277,8 @@ while play:
 
     print()
     print()
-    ans = input("Enter 'yes' to play again, leave blank to quit:    ")
-    if ans == "yes":
+    ans = input("Hit 'Enter' to play again, enter QUIT to quit:    ")
+    if ans == "":
         wrongGuesses=0
     else:
         play = False
