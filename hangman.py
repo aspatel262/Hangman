@@ -115,7 +115,7 @@ hangmanStages = [
  /__/:/  /  /\ /__/:/ \__\:\ /__/:/ /:/___ /__/:/ /:/___ /__/:/ /:/ /\ /__/:/  /  /\  /  /::\   
  \  \:\ /  /:/ \  \:\ /  /:/ \  \:\/:::::/ \  \:\/:::::/ \  \:\/:/ /:/ \  \:\ /  /:/ /__/:/\:\  
   \  \:\  /:/   \  \:\  /:/   \  \::/~~~~   \  \::/~~~~   \  \::/ /:/   \  \:\  /:/  \__\/  \:\ 
-   \  \:\/:/     \  \:\/:/     \  \:\        \  \:\        \  \:\/:/     \  \:\/:/        \  \:\
+   \  \:\/:/     \  \:\/:/     \  \:\        \  \:\        \  \:\/:/     \  \:\/:/        \  \:\ 
     \  \::/       \  \::/       \  \:\        \  \:\        \  \::/       \  \::/          \__\/
      \__\/         \__\/         \__\/         \__\/         \__\/         \__\/                ''',
 '''      ___           ___           ___           ___           ___              
@@ -158,8 +158,9 @@ def guessLetter(word, wrongGuesses, currGuess):
                if guess == l:
                   currGuess = setCurrGuess(currGuess, i, guess)
                i+=1
+            correctGuess(guess)
         else:
-            print("WRONG!!!!")
+            wrongGuess(guess)
             wrongGuesses+=1
     return(currGuess, wrongGuesses)
     
@@ -195,9 +196,14 @@ def displayLetters():
     return
 
 def repeatGuess():
-    print(hangmanStages[9])
-    print()
-    print("YOU CANNOT GUESS A LETTER TWICE")
+    rp = " "
+    while rp != "":
+        print(hangmanStages[9])
+        print()
+        print("YOU CANNOT GUESS A LETTER TWICE")
+        print()
+        rp = input("Press ENTER to continue!")
+    
     
 def titleScreen():
     title = " "
@@ -206,9 +212,23 @@ def titleScreen():
         print()
         title = input("Press ENTER to play!")
         
-def correctGuess():
+def correctGuess(guess):
+    corr = " "
+    while corr != "":
+        print(hangmanStages[11])
+        print()
+        print("Your guess of letter " + guess + "was CORRECT!")
+        print()
+        corr = input("Press ENTER to continue!")
     
-        
+def wrongGuess(guess):
+    wrg = " "
+    while wrg != "":
+        print(hangmanStages[12])
+        print()
+        print("Your guess of letter " + guess + "was WRONG!")
+        print()
+        wrg = input("Press ENTER to continue!")
 
 play = True
 
@@ -238,7 +258,6 @@ while play:
         retTup = guessLetter(gameWord, wrongGuesses, currGuess)
         currGuess = retTup[0]
         wrongGuesses = retTup[1]
-        sleep(0.5)
         clear()
         
     if wrongGuesses == 6:
