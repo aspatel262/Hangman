@@ -1,7 +1,9 @@
 from dataclasses import replace
+from operator import truediv
 import random
 from os import system, name
 from time import sleep
+from turtle import title
 
 def clear():
     _=system('clear')
@@ -61,17 +63,17 @@ hangmanStages = [
               ______|______ 
     ''',
     ''' 
-      ___       ___           ___           ___           ___     
-     /\__\     /\  \         /\  \         /\  \         /\  \    
-    /:/  /    /::\  \       /::\  \       /::\  \       /::\  \   
-            |=======|          /:/  /    /:/\:\  \     /:/\ \  \     /:/\:\  \     /:/\:\  \  
-            |       |         /:/  /    /:/  \:\  \   _\:\~\ \  \   /::\~\:\  \   /::\~\:\  \ 
-            O       |        /:/__/    /:/__/ \:\__\ /\ \:\ \ \__\ /:/\:\ \:\__\ /:/\:\ \:\__\ 
-           -|-      |        \:\  \    \:\  \ /:/  / \:\ \:\ \/__/ \:\~\:\ \/__/ \/_|::\/:/  /
-            /\      |         \:\  \    \:\  /:/  /   \:\ \:\__\    \:\ \:\__\      |:|::/  / 
-              ______|______    \:\  \    \:\/:/  /     \:\/:/  /     \:\ \/__/      |:|\/__/  
-                                \:\__\    \::/  /       \::/  /       \:\__\        |:|  |    
-                                 \/__/     \/__/         \/__/         \/__/         \|__|    ''',
+                       ___       ___           ___           ___           ___     
+                      /\__\     /\  \         /\  \         /\  \         /\  \    
+                     /:/  /    /::\  \       /::\  \       /::\  \       /::\  \   
+ |=======|          /:/  /    /:/\:\  \     /:/\ \  \     /:/\:\  \     /:/\:\  \  
+ |       |         /:/  /    /:/  \:\  \   _\:\~\ \  \   /::\~\:\  \   /::\~\:\  \ 
+ O       |        /:/__/    /:/__/ \:\__\ /\ \:\ \ \__\ /:/\:\ \:\__\ /:/\:\ \:\__\ 
+-|-      |        \:\  \    \:\  \ /:/  / \:\ \:\ \/__/ \:\~\:\ \/__/ \/_|::\/:/  /
+ /\      |         \:\  \    \:\  /:/  /   \:\ \:\__\    \:\ \:\__\      |:|::/  / 
+   ______|______    \:\  \    \:\/:/  /     \:\/:/  /     \:\ \/__/      |:|\/__/  
+                     \:\__\    \::/  /       \::/  /       \:\__\        |:|  |    
+                      \/__/     \/__/         \/__/         \/__/         \|__|    ''',
         '''      ___                       ___           ___           ___           ___     
      /__/\        ___          /__/\         /__/\         /  /\         /  /\    
     _\_ \:\      /  /\         \  \:\        \  \:\       /  /:/_       /  /::\   
@@ -99,12 +101,34 @@ hangmanStages = [
      \  \:\       /  /::\        \  \:\       /  /:/_       |  |::\       /  /::\        \  \:\   
       \__\:\     /  /:/\:\        \  \:\     /  /:/ /\      |  |:|:\     /  /:/\:\        \  \:\  
   ___ /  /::\   /  /:/~/::\   _____\__\:\   /  /:/_/::\   __|__|:|\:\   /  /:/~/::\   _____\__\:\ 
- /__/\  /:/\:\ /__/:/ /:/\:\ /__/::::::::\ /__/:/__\/\:\ /__/::::| \:\ /__/:/ /:/\:\ /__/::::::::\
+ /__/\  /:/\:\ /__/:/ /:/\:\ /__/::::::::\ /__/:/__\/\:\ /__/::::| \:\ /__/:/ /:/\:\ /__/::::::::\ 
  \  \:\/:/__\/ \  \:\/:/__\/ \  \:\~~\~~\/ \  \:\ /~~/:/ \  \:\~~\__\/ \  \:\/:/__\/ \  \:\~~\~~\/
   \  \::/       \  \::/       \  \:\  ~~~   \  \:\  /:/   \  \:\        \  \::/       \  \:\  ~~~ 
    \  \:\        \  \:\        \  \:\        \  \:\/:/     \  \:\        \  \:\        \  \:\     
     \  \:\        \  \:\        \  \:\        \  \::/       \  \:\        \  \:\        \  \:\    
-     \__\/         \__\/         \__\/         \__\/         \__\/         \__\/         \__\/    '''
+     \__\/         \__\/         \__\/         \__\/         \__\/         \__\/         \__\/    ''',
+'''      ___           ___           ___           ___           ___           ___                 
+     /  /\         /  /\         /  /\         /  /\         /  /\         /  /\          ___   
+    /  /:/        /  /::\       /  /::\       /  /::\       /  /:/_       /  /:/         /  /\  
+   /  /:/        /  /:/\:\     /  /:/\:\     /  /:/\:\     /  /:/ /\     /  /:/         /  /:/  
+  /  /:/  ___   /  /:/  \:\   /  /:/~/:/    /  /:/~/:/    /  /:/ /:/_   /  /:/  ___    /  /:/   
+ /__/:/  /  /\ /__/:/ \__\:\ /__/:/ /:/___ /__/:/ /:/___ /__/:/ /:/ /\ /__/:/  /  /\  /  /::\   
+ \  \:\ /  /:/ \  \:\ /  /:/ \  \:\/:::::/ \  \:\/:::::/ \  \:\/:/ /:/ \  \:\ /  /:/ /__/:/\:\  
+  \  \:\  /:/   \  \:\  /:/   \  \::/~~~~   \  \::/~~~~   \  \::/ /:/   \  \:\  /:/  \__\/  \:\ 
+   \  \:\/:/     \  \:\/:/     \  \:\        \  \:\        \  \:\/:/     \  \:\/:/        \  \:\
+    \  \::/       \  \::/       \  \:\        \  \:\        \  \::/       \  \::/          \__\/
+     \__\/         \__\/         \__\/         \__\/         \__\/         \__\/                ''',
+'''      ___           ___           ___           ___           ___              
+     /__/\         /  /\         /  /\         /__/\         /  /\             
+    _\_ \:\       /  /::\       /  /::\        \  \:\       /  /:/_            
+   /__/\ \:\     /  /:/\:\     /  /:/\:\        \  \:\     /  /:/ /\           
+  _\_ \:\ \:\   /  /:/~/:/    /  /:/  \:\   _____\__\:\   /  /:/_/::\          
+ /__/\ \:\ \:\ /__/:/ /:/___ /__/:/ \__\:\ /__/::::::::\ /__/:/__\/\:\         
+ \  \:\ \:\/:/ \  \:\/:::::/ \  \:\ /  /:/ \  \:\~~\~~\/ \  \:\ /~~/:/         
+  \  \:\ \::/   \  \::/~~~~   \  \:\  /:/   \  \:\  ~~~   \  \:\  /:/          
+   \  \:\/:/     \  \:\        \  \:\/:/     \  \:\        \  \:\/:/           
+    \  \::/       \  \:\        \  \::/       \  \:\        \  \::/            
+     \__\/         \__\/         \__\/         \__\/         \__\/             '''
 ]
 
 words = 'ant baboon badger bat bear beaver camel cat clam cobra cougar coyote crow deer dog donkey duck eagle ferret fox frog goat goose hawk lion lizard llama mole monkey moose mouse mule newt otter owl panda parrot pigeon python rabbit ram rat raven rhino salmon seal shark sheep skunk sloth snake spider stork swan tiger toad trout turkey turtle weasel whale wolf wombat zebra kush ayush rupesh jaivish shivom adi heeya deeya mahitha rhea prachi vrunda krishna'.split()
@@ -171,18 +195,33 @@ def displayLetters():
     return
 
 def repeatGuess():
+    print(hangmanStages[9])
+    print()
     print("YOU CANNOT GUESS A LETTER TWICE")
+    
+def titleScreen():
+    title = " "
+    while title != "":
+        print(hangmanStages[10])
+        print()
+        title = input("Press ENTER to play!")
+        
+def correctGuess():
+    
+        
 
 play = True
 
+titleScreen()
+
 while play:
+    clear()
     
     guesses = []
     
     gameWord = getWord(words)
     print(gameWord)
     wrongGuesses = 0
-    
     currGuess = ""
     for letter in gameWord:
         currGuess = currGuess + '_ '
@@ -199,16 +238,12 @@ while play:
         retTup = guessLetter(gameWord, wrongGuesses, currGuess)
         currGuess = retTup[0]
         wrongGuesses = retTup[1]
-        sleep(1)
+        sleep(0.5)
         clear()
         
     if wrongGuesses == 6:
         loserSc(gameWord)
-        
-    #if guess wrong letter throw wrong screen, right screen
 
-        
-    
     print()
     print()
     ans = input("Enter 'yes' to play again, leave blank to quit:    ")
