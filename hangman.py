@@ -226,7 +226,7 @@ def correctGuess(guess):
         print(hangmanStages[11])
         print()
         print()
-        print("Your guess of letter " + guess + " was CORRECT!")
+        print("Your guess of the letter " + guess + " was CORRECT!")
         print()
         corr = input("Press ENTER to continue!")
     
@@ -237,7 +237,7 @@ def wrongGuess(guess):
         print(hangmanStages[12])
         print()
         print()
-        print("Your guess of letter " + guess + "was WRONG!")
+        print("Your guess of the letter " + guess + "was WRONG!")
         print()
         wrg = input("Press ENTER to continue!")
 
