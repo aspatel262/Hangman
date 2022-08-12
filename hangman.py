@@ -6,7 +6,7 @@ from time import sleep
 def clear():
     _=system('clear')
 
-#adi
+print("suhgang")
 random.seed(a=None, version=2)
 
 
