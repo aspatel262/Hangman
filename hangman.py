@@ -218,6 +218,7 @@ def titleScreen():
         print()
         print()
         print("version 1.0.0 developed by aweditya")
+        print()
         title = input("Press ENTER to play!")
         
 def correctGuess(guess):
@@ -253,7 +254,6 @@ while play:
     guesses = []
     
     gameWord = getWord(words)
-    print(gameWord)
     wrongGuesses = 0
     currGuess = ""
     for letter in gameWord:
