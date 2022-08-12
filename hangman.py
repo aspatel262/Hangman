@@ -6,7 +6,6 @@ from time import sleep
 def clear():
     _=system('clear')
 
-print("suhgang")
 random.seed(a=None, version=2)
 
 
