@@ -217,6 +217,7 @@ def titleScreen():
         print(hangmanStages[10])
         print()
         print()
+        print("version 1.0.0 developed by aweditya")
         title = input("Press ENTER to play!")
         
 def correctGuess(guess):
