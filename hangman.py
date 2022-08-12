@@ -54,24 +54,25 @@ hangmanStages = [
             /       |
               ______|______
     ''',
-        '''            |=======|
-            |       |      
-            O       | 
-           -|-      |
-            /\      |
-              ______|______
+        '''            |=======|       
+            |       |       
+            O       |       
+           -|-      |       
+            /\      |       
+              ______|______ 
     ''',
-        '''      ___       ___           ___           ___           ___     
+    ''' 
+      ___       ___           ___           ___           ___     
      /\__\     /\  \         /\  \         /\  \         /\  \    
     /:/  /    /::\  \       /::\  \       /::\  \       /::\  \   
-   /:/  /    /:/\:\  \     /:/\ \  \     /:/\:\  \     /:/\:\  \  
-  /:/  /    /:/  \:\  \   _\:\~\ \  \   /::\~\:\  \   /::\~\:\  \ 
- /:/__/    /:/__/ \:\__\ /\ \:\ \ \__\ /:/\:\ \:\__\ /:/\:\ \:\__\
- \:\  \    \:\  \ /:/  / \:\ \:\ \/__/ \:\~\:\ \/__/ \/_|::\/:/  /
-  \:\  \    \:\  /:/  /   \:\ \:\__\    \:\ \:\__\      |:|::/  / 
-   \:\  \    \:\/:/  /     \:\/:/  /     \:\ \/__/      |:|\/__/  
-    \:\__\    \::/  /       \::/  /       \:\__\        |:|  |    
-     \/__/     \/__/         \/__/         \/__/         \|__|    ''',
+            |=======|          /:/  /    /:/\:\  \     /:/\ \  \     /:/\:\  \     /:/\:\  \  
+            |       |         /:/  /    /:/  \:\  \   _\:\~\ \  \   /::\~\:\  \   /::\~\:\  \ 
+            O       |        /:/__/    /:/__/ \:\__\ /\ \:\ \ \__\ /:/\:\ \:\__\ /:/\:\ \:\__\ 
+           -|-      |        \:\  \    \:\  \ /:/  / \:\ \:\ \/__/ \:\~\:\ \/__/ \/_|::\/:/  /
+            /\      |         \:\  \    \:\  /:/  /   \:\ \:\__\    \:\ \:\__\      |:|::/  / 
+              ______|______    \:\  \    \:\/:/  /     \:\/:/  /     \:\ \/__/      |:|\/__/  
+                                \:\__\    \::/  /       \::/  /       \:\__\        |:|  |    
+                                 \/__/     \/__/         \/__/         \/__/         \|__|    ''',
         '''      ___                       ___           ___           ___           ___     
      /__/\        ___          /__/\         /__/\         /  /\         /  /\    
     _\_ \:\      /  /\         \  \:\        \  \:\       /  /:/_       /  /::\   
@@ -156,11 +157,16 @@ def printCurrGuess(currGuess):
 def guessWord(word):
     return
 
-def winnner():
-    return
+def winnnerSc(gameWords):
+    print(hangmanStages[8])
+    print()
+    print("WINNER WINNER CHICKEN DINNER!")
+    print("YOU GUESSED THE WORD ", gameWords, " CORRECTLY!")
 
-def loser():
-    return
+def loserSc():
+    print(hangmanStages[7])
+    print()
+    print("THE WORD WAS " + gameWord + "!")
 
 def displayLetters():
     return
@@ -175,7 +181,7 @@ while play:
     guesses = []
     
     gameWord = getWord(words)
-    
+    print(gameWord)
     wrongGuesses = 0
     
     currGuess = ""
@@ -187,8 +193,7 @@ while play:
         printDisplay(wrongGuesses, guesses)
         currGuessTest = currGuess.replace(" ","")
         if currGuessTest==gameWord:
-            #winscreenfunction
-            print("win")
+            winnnerSc(gameWord)
             break
         else:
             pass
@@ -199,19 +204,14 @@ while play:
         clear()
         
     if wrongGuesses == 6:
-        #displayloserfunction
-        printHangman(6)
-        print()
-        print("LOSER")
-        print()
-        print("the word was: " + gameWord)
+        loserSc(gameWord)
         
-    #iif win throw win screen, if lose trhow lose screen
     #if guess wrong letter throw wrong screen, right screen
 
         
     
-        
+    print()
+    print()
     ans = input("Enter 'yes' to play again, leave blank to quit:    ")
     if ans == "yes":
         wrongGuesses=0
