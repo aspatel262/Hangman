@@ -162,10 +162,10 @@ def winnnerSc(gameWords):
     print("WINNER WINNER CHICKEN DINNER!")
     print("YOU GUESSED THE WORD ", gameWords, " CORRECTLY!")
 
-def loserSc():
+def loserSc(gameWords):
     print(hangmanStages[7])
     print()
-    print("THE WORD WAS " + gameWord + "!")
+    print("THE WORD WAS " + gameWords + "!")
 
 def displayLetters():
     return
