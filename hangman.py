@@ -70,20 +70,29 @@ def getWord(wordList):
     worldSelect = random.randint(0,len(wordList))
     return wordList[worldSelect]
 
-def printHangman(wrongGuesses):
+def printDisplay(wrongGuesses, guesses):
     print(hangmanStages[wrongGuesses])
+    print()
+    print("Guessed Letters: ", end='')
+    for guess in guesses:
+        print(guess, " ", end='')
+    printCurrGuess(currGuess)
     
 def guessLetter(word, wrongGuesses, currGuess):
     guess = input("Guess a Letter: ")
-    if guess in word:
-        i = 0
-        for l in word:
-            if guess == l:
-                currGuess = setCurrGuess(currGuess, i, guess)
-            i+=1
+    if guess in guesses:
+        repeatGuess()
     else:
-        print("WRONG!!!!")
-        wrongGuesses+=1
+        guesses.append(guess)
+        if guess in word:
+            i = 0
+            for l in word:
+               if guess == l:
+                  currGuess = setCurrGuess(currGuess, i, guess)
+               i+=1
+        else:
+            print("WRONG!!!!")
+            wrongGuesses+=1
     return(currGuess, wrongGuesses)
     
 def setCurrGuess(currGuess, place, guess):
@@ -113,12 +122,13 @@ def displayLetters():
     return
 
 def repeatGuess():
-    return
+    print("YOU CANNOT GUESS A LETTER TWICE")
 
 play = True
-win = False
 
 while play:
+    
+    guesses = []
     
     gameWord = getWord(words)
     
@@ -128,10 +138,9 @@ while play:
     for letter in gameWord:
         currGuess = currGuess + '_ '
     
-    while wrongGuesses < 6 and not win:
+    while wrongGuesses < 6:
         print()
-        printHangman(wrongGuesses)
-        printCurrGuess(currGuess)
+        printDisplay(wrongGuesses, guesses)
         currGuessTest = currGuess.replace(" ","")
         if currGuessTest==gameWord:
             #winscreenfunction
@@ -153,9 +162,9 @@ while play:
         print()
         print("the word was: " + gameWord)
         
-    #if guessed already guessed char throw message, if win throw win screen, if lose trhow lose screen
-    #if guess wrong letter throw wrong screen
-    #display guessed letters
+    #iif win throw win screen, if lose trhow lose screen
+    #if guess wrong letter throw wrong screen, right screen
+
         
     
         
