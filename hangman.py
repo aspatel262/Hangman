@@ -182,13 +182,17 @@ def guessWord(word):
     return
 
 def winnnerSc(gameWords):
+    clear()
     print(hangmanStages[8])
+    print()
     print()
     print("WINNER WINNER CHICKEN DINNER!")
     print("YOU GUESSED THE WORD ", gameWords, " CORRECTLY!")
 
 def loserSc(gameWords):
+    clear()
     print(hangmanStages[7])
+    print()
     print()
     print("THE WORD WAS " + gameWords + "!")
 
@@ -196,9 +200,11 @@ def displayLetters():
     return
 
 def repeatGuess():
+    clear()
     rp = " "
     while rp != "":
         print(hangmanStages[9])
+        print()
         print()
         print("YOU CANNOT GUESS A LETTER TWICE")
         print()
@@ -210,26 +216,32 @@ def titleScreen():
     while title != "":
         print(hangmanStages[10])
         print()
+        print()
         title = input("Press ENTER to play!")
         
 def correctGuess(guess):
+    clear()
     corr = " "
     while corr != "":
         print(hangmanStages[11])
         print()
-        print("Your guess of letter " + guess + "was CORRECT!")
+        print()
+        print("Your guess of letter " + guess + " was CORRECT!")
         print()
         corr = input("Press ENTER to continue!")
     
 def wrongGuess(guess):
+    clear()
     wrg = " "
     while wrg != "":
         print(hangmanStages[12])
+        print()
         print()
         print("Your guess of letter " + guess + "was WRONG!")
         print()
         wrg = input("Press ENTER to continue!")
 
+clear()
 play = True
 
 titleScreen()
